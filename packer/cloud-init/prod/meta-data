@@ -1,0 +1,2 @@
+instance-id: prod-instance
+local-hostname: prod-server

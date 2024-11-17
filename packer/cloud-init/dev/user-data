@@ -1,0 +1,18 @@
+#cloud-config
+hostname: dev-server
+users:
+  - name: ubuntu
+    gecos: Developer User
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuAXafb98FRSqR+xB0Hkuy9Pa+yykPF+imjr4jjGnoZsjJDH5oQPh3p2f4Fs5/5BqJjEgOliDMm8uzgq3Z4kNXJzmFUxIO7yrHU0HjOCn3MFfrXVbemtV0VLb9xpzSPCJlJUfhzqVOpwEqjN51E55SoTVNBz8aT4JRRVrImJPs2/slWgbYSyHwV0UW+caH5JXNzJ+hb/cloQ8Dg0G+eE1dmdafEXqkwSMI2R4Lq9DWrNZnpZtx1od6V9bo/WBgM6/ibWkDIRGEsFmSJ0Xrc4Njv7dQQFTN6nlzVD3nHaCt5sIYO4oJoCncclUFibdyS6oRQ5VDNwR2RTG6m31K4osYZRA9XODSbpMauCKr3I8KJrrQj4WBreR88ZZW+RQ1txc3COBXUZsTqOWQ/TPyo5kQui/DggloP/ZK1wTQ+l8Dk7X/Lgj1+9kWaHnqJr7gzPIvpDMRpzZ2XCfJNDIBbURY7Ctvq702y/ayq5XsXnYYCKyMIk4f/hTT8Ob6z4Iulh+otNa+njvgPx98qVxvLJ98ZuRB1L0r4F5KWYAQ8iSnBBtFJYcR22S701agjiZ7BQ/BIWg67QG44rxmWIJgc2XXrNGFIJl00WUTXVw1kJmCMMNQBxYtA1xkQAn9gfmmR6vjrqPv/ktcPd5LQJgCQ8EIFslG0RB1ehbv+OEFf1eL1Q== ubuntu@ubuntu
+packages:
+  - git
+  - vim
+  - htop
+  - curl
+runcmd:
+  - apt-get update -y
+  - apt-get upgrade -y
+  - echo "Welcome to the Dev Environment!" > /etc/motd
