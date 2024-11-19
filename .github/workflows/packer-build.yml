@@ -1,0 +1,45 @@
+name: Build Packer Images
+
+on:
+  push:
+    paths:
+      - 'packer/template-kvm.pkr.hcl'      
+      - 'packer/template-vmware.pkr.hcl'    
+      - 'packer/cloud-init/**'     
+  workflow_dispatch: 
+
+jobs:
+  build-kvm-images:
+    if: contains(github.event.head_commit.message, 'kvm') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Validate KVM Packer Configuration
+        run: packer validate packer/template-kvm.pkr.hcl
+
+      - name: Build KVM Images
+        run: |
+          for ENV in dev test prod; do
+            packer build -var "environment=$ENV" packer/kvm.pkr.hcl
+          done
+
+  build-vmware-images:
+    if: contains(github.event.head_commit.message, 'vmware') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Validate VMware Packer Configuration
+        run: packer validate packer/template-vmware.pkr.hcl
+
+      - name: Build VMware Images
+        run: |
+          for ENV in dev test prod; do
+            packer build -var "environment=$ENV" packer/vmware.pkr.hcl
+          done
+          
