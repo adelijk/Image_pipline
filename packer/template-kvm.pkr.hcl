@@ -24,7 +24,7 @@ source "qemu" "ubuntu" {
   cd_files         = ["./cloud-init/${var.environment}/*"]
   cd_label         = "cidata"
   disk_image       = true
-  disk_size        = "11G"
+  disk_size        = "10G"
   iso_checksum     = "e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9"
   iso_url          = "/mnt/data1/ubuntu.iso"
   output_directory = "output/kvm/${var.environment}"
