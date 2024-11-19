@@ -25,6 +25,7 @@ source "qemu" "ubuntu" {
   cd_label         = "cidata"
   disk_image       = true
   disk_size        = "11G"
+  http_directory = "/mnt/data1/httpdir"
   iso_checksum     = "e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9"
   iso_url          = "/mnt/data1/ubuntu.iso"
   output_directory = "/mnt/data1/output/kvm/${var.environment}"
