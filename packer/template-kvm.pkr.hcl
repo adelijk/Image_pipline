@@ -33,7 +33,7 @@ source "qemu" "ubuntu" {
   ssh_password     = "ubuntu"
   ssh_private_key_file = "~/.ssh/id_rsa"
   ssh_port = 22
-  ssh_wait_timeout      = "10m" # Extend timeout if needed
+  ssh_wait_timeout      = "5m" # Extend timeout if needed
   vm_name          = "${var.environment}-kvm.img"
   qemuargs = [
     ["-m", "2048M"],
