@@ -17,6 +17,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Initialize Packer
+        run: packer init /packer/template-kvm.pkr.hcl
+
       - name: Validate KVM Packer Configuration
         run: packer validate packer/template-kvm.pkr.hcl
 
@@ -34,6 +37,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Initialize Packer
+        run: packer init /packer/template-vmware.pkr.hcl
+
       - name: Validate VMware Packer Configuration
         run: packer validate packer/template-vmware.pkr.hcl
 
@@ -42,4 +48,3 @@ jobs:
           for ENV in dev test prod; do
             packer build -var "environment=$ENV" packer/vmware.pkr.hcl
           done
-          
