@@ -24,10 +24,6 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 127.0.0.1 >> ~/.ssh/known_hosts
 
-          
-      - name: Test SSH Connection
-        run: |
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ubuntu@127.0.0.1 echo "SSH is working"
 
       - name: Initialize Packer
         run: packer init packer/template-kvm.pkr.hcl
