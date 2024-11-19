@@ -27,7 +27,7 @@ source "qemu" "ubuntu" {
   disk_size        = "11G"
   iso_checksum     = "e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9"
   iso_url          = "/mnt/data1/ubuntu.iso"
-  output_directory = "output/kvm/${var.environment}"
+  output_directory = "/mnt/data1/output/kvm/${var.environment}"
   shutdown_command = "echo 'packer' | sudo -S shutdown -P now"
   ssh_username     = "ubuntu"
   ssh_password     = "ubuntu"
