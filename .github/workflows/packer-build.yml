@@ -6,22 +6,16 @@ on:
       - 'packer/template-kvm.pkr.hcl'      
       - 'packer/template-vmware.pkr.hcl'    
       - 'packer/cloud-init/**'     
-  workflow_dispatch: 
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   build-kvm-images:
     if: contains(github.event.head_commit.message, 'kvm') || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Using your self-hosted Linux runner
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Set up SSH private key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
 
       - name: Initialize Packer
         run: packer init packer/template-kvm.pkr.hcl
@@ -37,17 +31,11 @@ jobs:
 
   build-vmware-images:
     if: contains(github.event.head_commit.message, 'vmware') || github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted  # Using your self-hosted Linux runner
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Set up SSH private key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
 
       - name: Initialize Packer
         run: packer init packer/template-vmware.pkr.hcl
