@@ -29,7 +29,7 @@ source "vmware-iso" "ubuntu" {
   shutdown_command = "echo 'packer' | sudo -S shutdown -P now"
   ssh_username     = "ubuntu"
   ssh_password     = "ubuntu"
-  disk_size        = 10
+  disk_size        = 11
   cd_files         = ["./cloud-init/${var.environment}/*"]
   cd_label         = "cidata"
   vm_name          = "${var.environment}-vmware.img"
