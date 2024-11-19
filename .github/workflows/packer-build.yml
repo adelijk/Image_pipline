@@ -43,7 +43,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-     - name: Set up SSH private key
+      - name: Set up SSH private key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
