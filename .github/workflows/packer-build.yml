@@ -34,7 +34,7 @@ jobs:
       - name: Build KVM Images
         run: |
           for ENV in dev test prod; do
-            packer build -var "environment=$ENV" packer/template-kvm.pkr.hcl
+            PACKER_LOG=1 packer build -var "environment=$ENV" packer/template-kvm.pkr.hcl
           done
 
   build-vmware-images:
